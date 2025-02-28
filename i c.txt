@@ -1,0 +1,12 @@
+from time import *
+lists = [35,40,2,1,80,5]
+print(lists)
+start_t = time()
+for i in range(len(lists)):
+    min_value = min(lists[i:])
+    min_index = lists.index(min_value)
+    lists[i],lists[min_index] = lists[min_index],lists[i]
+print(lists)
+end_t = time()
+execution_t = end_t - start_t
+print(execution_t)

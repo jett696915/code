@@ -1,0 +1,42 @@
+import sys
+def dijkstra(graph, src):
+    n=len(graph)
+
+    distances=[sys.maxsize]*n
+    distances[src]=0
+
+    visited=[False]*n
+
+    for _ in range(n):
+        min_distance=sys.maxsize
+        min_index=-1
+        for v in range(n):
+            if not visited[v] and distances[v]<min_distance:
+                min_distance=distances[v]
+                min_index=v
+
+        visited[min_index] = True
+
+        for v in range(n):
+            if(
+                graph[min_index][v]>0
+                and not visited[v]
+                and distances[min_index] + graph[min_index][v]< distances[v]
+                ):
+                distances[v] = distances[min_index] + graph[min_index][v]
+
+        return distances
+graph = [
+    [0,2,0,1,0,0],
+    [2,0,3,2,0,0],
+    [0,3,0,0,7,4],
+    [1,2,0,0,5,0],
+    [0,0,7,5,0,1],
+    [0,0,4,0,1,0]
+]
+source_vertex = 0
+shortest_distances = dijkstra(graph, source_vertex)
+print(f"Shortest distances from vertex{source_vertex}:")
+for i, dist in enumerate(shortest_distances):
+    print(f"vertex{i}:{dist}")
+s

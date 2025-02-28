@@ -1,0 +1,15 @@
+def knapsack(values, weights, capacity):
+    n = len(values)
+    dp = [0] * (capacity + 1)
+    for i in range(n):
+        for w in range(capacity, weights[i] - 1, -1):
+            dp[w] = max(dp[w], values[i] + dp[w - weights[i]])
+            return dp[capacity]
+        
+if _name_ == "_main_":
+    values = [150, 100, 120]
+    weights = [10, 20, 30]
+    capacity = 50
+
+    result = knapsack(values, weights, capacity)
+    print(f"The maximum value that can be achieved is: {result}")

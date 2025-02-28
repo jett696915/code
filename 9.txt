@@ -1,0 +1,22 @@
+from collections import deque
+
+def is_bipartite(graph):
+    colors = [-1] * len(graph)
+
+    for node in range(len(graph)):
+        if colors[node] == -1:
+            queue = deque([(node, 0)])
+            colors[node] = 0
+            while queue:
+                current_node, current_color = queue.popleft()
+                for neighbor in graph[current_node]:
+                    if colors[neighbor] == -1:
+                        colors[neighbor] = 1 - current_color
+                        queue.append((neighbor, 1 - current_color))
+                    elif colors[neighbor] == current_color:
+                        return False
+
+    return True
+
+graph = [[1, 2], [0, 3], [0, 3], [1, 2]]
+print(is_bipartite(graph))

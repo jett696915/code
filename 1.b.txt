@@ -1,0 +1,12 @@
+from time import *
+lists = [10,25,2,3,1]
+print("Unsorted Lists: ",lists)
+start_t = time()
+for j in range(len(lists)-1):
+    for i in range(len(lists)-1):
+        if lists[i]>lists[i+1]:
+            lists[i],lists[i+1]=lists[i+1],lists[i]
+print("Sorted lists:",lists)
+end_t = time()
+execution_t = end_t - start_t
+print(execution_t)
